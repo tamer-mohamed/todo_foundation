@@ -1,0 +1,22 @@
+
+/**
+* Task component which contains all the task info (title,icon-marker...etc)
+*/
+
+@import "../settings";
+
+.task {
+  padding: 0.8rem;
+  border: 1px solid $dark-gray;
+  background: $white;
+
+  .task__title {
+    font-size: 20px;
+  }
+
+  .task__checkMarker {
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+}

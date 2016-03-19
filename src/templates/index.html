@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>todo</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="./stylesheets/app.css">
+</head>
+
+<body class="todoApp">
+<div class="row todoApp__container">
+    <div class="small-12 columns">
+
+        <div class="row">
+
+            <ul class="small-12 columns tasksControl">
+
+                <li class="tasksControl__checkAll">
+                    <a href="#" class="tasksControl__checkAll">
+                        <h5>Mark all as finished</h5>
+
+                        <span class="tasksControl__checkAll__iconHolder">
+                            <i class="fa fa-check"></i>
+                        </span>
+                    </a>
+                </li>
+
+            </ul>
+
+            <div class="border">
+
+            </div>
+
+            <!-- block TODO header -->
+            <div class="small-12 columns listHeader">
+                <h2>Things I need to do....</h2>
+            </div>
+            <!-- block TOOD header -->
+
+
+            <!-- block tasks list -->
+            <div class="small-12 columns">
+                <ul class="tasksList">
+
+                    <!-- block task-->
+                    <li class="row task">
+
+                        <!-- element task-title -->
+                        <div class="small-10 columns task__title">
+                            <span>First todo list to do</span>
+                        </div>
+                        <!-- element task-title -->
+
+                        <!-- element checker -->
+                        <div class="small-2 columns task__checkMarker text-right">
+                            <a class="marker marker--checked">
+                                <i class="fa fa-check marker__icon"></i>
+                            </a>
+                        </div>
+                        <!-- element checker -->
+
+                    </li>
+                    <!-- block task-->
+                </ul>
+
+            </div>
+            <!-- block tasks list -->
+
+            <!-- block post -->
+            <div class="small-12 columns taskPublish">
+                <div class="row">
+                    <div class="taskPublish__input small-11">
+                        <input type="text" placeholder="Things I should do next..."/>
+                    </div>
+
+                    <div class="small-1 text-right">
+
+                        <div class="taskPost__submit">
+                            <a href="" class="button">
+                                <i class="fa fa-plus"></i>
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <!-- block post -->
+
+
+        </div>
+
+    </div>
+</div>
+<script src="js/bundle.js"></script>
+</body>
+
+</html>

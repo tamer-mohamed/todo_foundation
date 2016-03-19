@@ -1,0 +1,13 @@
+@import "settings";
+
+.border {
+  // default border style
+  height: 2px;
+  width: 100%;
+  
+  background: $dark-gray;
+
+  .border--white {
+    background: $white;
+  }
+}

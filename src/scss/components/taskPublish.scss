@@ -1,0 +1,13 @@
+@import "../settings";
+
+.taskPublish {
+  margin: 1.2rem auto;
+
+  .taskPublish__input {
+
+    input {
+      background: $medium-gray;
+    }
+
+  }
+}
