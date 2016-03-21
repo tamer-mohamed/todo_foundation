@@ -8,7 +8,6 @@ var gutil = require('gulp-util');
 var gulpSequence = require('gulp-sequence');
 var processhtml = require('gulp-minify-html');
 var sass = require('gulp-sass');
-var autoprefixer = require('gulp-autoprefixer');
 var watch = require('gulp-watch');
 var minifycss = require('gulp-minify-css');
 var uglify = require('gulp-uglify');
@@ -28,7 +27,7 @@ var b = watchify(browserify('./src/js/main', {
     cache: {},
     packageCache: {},
     fullPaths: true
-}));
+}).transform("babelify", {presets: ["es2015", "react"]}));
 
 gulp.task('js', bundle);
 b.on('update', bundle);
@@ -40,11 +39,11 @@ function bundle(){
         .pipe(source('bundle.js'))
         .pipe(buffer())
         .pipe(sourcemaps.init())
-        .pipe(prod ? babel({
-            presets: ['es2015']
-        }) : gutil.noop())
+        //.pipe(babel({
+        //    presets: ['es2015', 'react']
+        //}))
         .pipe(concat('bundle.js'))
-        .pipe(!prod ? sourcemaps.write('.') : gutil.noop())
+        .pipe(sourcemaps.write('.'))
         .pipe(prod ? streamify(uglify()) : gutil.noop())
         .pipe(gulp.dest('./build/js'))
         .pipe(browserSync.stream());
@@ -62,14 +61,10 @@ gulp.task('html', function(){
 gulp.task('sass', function(){
     return gulp.src('./src/scss/**/*.scss')
         .pipe(sass({
-            includePaths: [].concat(require('node-bourbon').includePaths, ['node_modules/foundation-sites/scss', 'node_modules/motion-ui/src'])
+            includePaths: require('node-bourbon').includePaths
         }))
         .on('error', onError)
         .pipe(prod ? minifycss() : gutil.noop())
-        .pipe(prod ? autoprefixer({
-            browsers: ['last 2 versions'],
-            cascade: false
-        }) : gutil.noop())
         .pipe(gulp.dest('./build/stylesheets'))
         .pipe(browserSync.stream());
 });
@@ -81,6 +76,8 @@ gulp.task('serve', function(){
             baseDir: './build'
         }
     });
+
+    gulp.watch('./src/js/**/*', ['js']);
 
     gulp.watch('./src/templates/**/*', ['html']);
     gulp.watch('./src/scss/**/*.scss', ['sass']);
