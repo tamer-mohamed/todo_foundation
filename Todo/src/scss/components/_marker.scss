@@ -22,7 +22,7 @@ $marker-height: 2.3rem;
   text-align: center;
   color: $dark-gray;
 
-  &:hover, &.marker--checked {
+  &:hover{
     background: $green;
     border: 2px solid darken($green, 20%);
     color: $white;

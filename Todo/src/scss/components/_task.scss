@@ -16,11 +16,17 @@
     display: inline-block;
     vertical-align: middle;
 
-    &.task__checkMarker--checked {
-      opacity: 0.5;
-    }
   }
 
+}
 
+.task--checked {
+  opacity: 0.5;
+
+  .marker {
+    background: $green;
+    border: 2px solid darken($green, 20%);
+    color: $white;
+  }
 
 }

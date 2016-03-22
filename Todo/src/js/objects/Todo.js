@@ -24,7 +24,7 @@ export default class Todo {
 
 
     list(){
-        return API.ref(this.id, EP.TASK);
+        return API.ref(EP.TASK, this.id);
     }
 
 
@@ -33,7 +33,7 @@ export default class Todo {
         return task.add(data);
     }
 
-    markAsFinished(id){
+    markAsFinished(){
         let task = new Task();
         return task.update(this.id, {finsihed: true});
     }
@@ -45,7 +45,7 @@ export default class Todo {
     }
 
     get(){
-        return API.ref(this.id, EP.TODO);
+        return API.ref(EP.TODO, this.id);
     }
 
 

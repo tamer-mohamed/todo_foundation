@@ -6,6 +6,8 @@ var React = require('react');
 import _ from 'lodash';
 import Todo from '../objects/Todo';
 import TaskComponent from './Task';
+import Task from '../utils/Task';
+import debugLog from '../utils/logs';
 
 
 var TodoComponent = React.createClass({
@@ -13,20 +15,17 @@ var TodoComponent = React.createClass({
     getInitialState: function(){
 
         return {
-            tasks: {},
-            info: {}
+            id: this.props.todoID,
+            tasks: {}
         }
-
 
     },
 
     componentWillMount: function(){
-        let _this = this,
-            todo = new Todo({id: this.props.todoID}),
+        let todo = new Task({id: this.props.todoID}),
             ref = todo.list(),
 
-            tasks = [],
-            info = {};
+            tasks = [];
 
         // populate tasks info once the data is available
         ref.on('child_added', (data)=>{
@@ -39,25 +38,33 @@ var TodoComponent = React.createClass({
                 ref
             })
         });
-
-
     },
+
 
     componentWillUnmount: function(){
         // delete FB ref
         this.state.ref.off();
     },
 
+
     render: function(){
-        let tasks = _.map(this.state.tasks, function(task){
+
+        debugLog('Rendering & Loading tasks ----------------------');
+
+        let tasks = _.map(this.state.tasks, (task)=>{
+
+            debugLog('----------------------');
+            debugLog(task);
+
             return (
-                <TaskComponent name={task.name} taskID={task['.key']} key={task['.key']}>
+                <TaskComponent name={task.name} isChecked={task.isChecked} todoID={this.props.todoID}
+                               taskID={task['.key']} key={task['.key']}>
                 </TaskComponent>
             )
         });
 
         return (
-            <ul className="tasksList">
+            <ul className="tasksList row">
                 {tasks}
             </ul>
         );

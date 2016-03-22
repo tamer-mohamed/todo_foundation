@@ -18,7 +18,7 @@ var AppComponent = React.createClass({
                     <div className="row">
 
                         <div className="small-12 columns">
-                            <TaskControlComponent key={`taskControl-${TodoID}`}/>
+                            <TaskControlComponent todoID={TodoID} key={`taskControl-${TodoID}`}/>
                         </div>
 
 
@@ -31,7 +31,7 @@ var AppComponent = React.createClass({
                         <div className="small-12 columns">
                             <TodoComponent todoID={TodoID} key={`todoList-${TodoID}`}/>
                         </div>
-                        <PostComponent/>
+                        <PostComponent todoID={TodoID}/>
                     </div>
                 </div>
             </div>

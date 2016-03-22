@@ -13,12 +13,19 @@ const API = function(){
         errorExceptions = [];
 
 
-    function ref(id, EP){
-        return todoFbRef.child(EP.concat(id));
+    // get FB ref
+    function ref(EP, id){
 
+        if(typeof id !== 'undefined' && id !== null){
+            return todoFbRef.child(EP.concat(id));
+        }
+
+        return todoFbRef.child(EP);
     }
 
 
+    // retrieve data
+    //@return promise
     function get(id, EP){
         return new Promise(function(resolve, reject){
             try{
@@ -31,7 +38,7 @@ const API = function(){
                         console.log(itemSnapshot.val());
                         var item = itemSnapshot.val();
 
-                        item['_key'] = itemSnapshot.key();
+                        item['.key'] = itemSnapshot.key();
                         items.push(item);
                     });
 

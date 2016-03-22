@@ -28,7 +28,6 @@ var TodoInfo = React.createClass({
 
         // populate todo info once the data is available
         ref.on('value', (data)=>{
-            console.log(data.val());
             info = data.val();
             this.setState({
                 info,
